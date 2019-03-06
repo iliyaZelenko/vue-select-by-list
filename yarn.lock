@@ -6540,6 +6540,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-cool-select@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/vue-cool-select/-/vue-cool-select-2.5.0.tgz#43270d23311d176faaa3d68e577bf719c46beae8"
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
