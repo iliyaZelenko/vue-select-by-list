@@ -1,9 +1,12 @@
 <template lang="html">
-  <CoolSelect item-text="name" :items="list" @select="onSelect">
-    <template slot="item" slot-scope="{ item }">
-      <span class="item"> ({{ item.id }}) - {{ item.name }} </span>
-    </template>
-  </CoolSelect>
+  <div>
+    <cool-select
+      :value="item"
+      :items="list"
+      item-text="name"
+      @select="onSelect"
+    />
+  </div>
 </template>
 
 <script>
@@ -29,6 +32,9 @@ export default {
   components: {
     CoolSelect
   },
+  data: () => ({
+    selected: null
+  })
 }
 </script>
 

@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <ListItem v-for="(item, index) in listSelected" :key="index"
-      :item="item"
+    <ListItem
+      v-for="(item, index) in listSelected"
+      :key="item.id || item.key"
+      :item.sync="listSelected[index]"
       :index="index"
       :list="list"
-      :removeItem="removeItem" />
+      :removeItem="removeItem"
+    />
 
     <button @click.prevent="addItem()">Add Item</button>
   </div>
@@ -18,6 +21,8 @@ export default {
   data() {
     return {
       listSelected: [],
+      itemTest: {id: 777, name: "Test"},
+      itemTest2: {id: 888, name: "Test 2"},
 
       list: [
         {id: 1, name: "IBM"},
@@ -36,12 +41,16 @@ export default {
   },
   methods: {
     addItem() {
-      this.listSelected.push(Object.assign({}, this.schema))
+      // same result (shallow copy) but es6
+      this.listSelected.push({
+        ...this.schema,
+        key: Math.round(+new Date() * Math.random())
+      })
     },
 
-    removeItem(index) {
-      this.listSelected.splice(index, 1)
-    },
+    removeItem(item) {
+      this.listSelected = this.listSelected.filter(i => i !== item)
+    }
   }
 }
 </script>

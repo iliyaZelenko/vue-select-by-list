@@ -1,9 +1,9 @@
 <template>
   <div class="list-item">
-    <div><ListSearch :list="list" :item="item" :onSelect="onSelect" /></div>
+    <div><ListSearch :list="list" :item="item" :on-select="onSelect" /></div>
     <div>{{ item.id }}</div>
     <div>{{ item.name }}</div>
-    <button @click.prevent="removeItem(index)">Delete Item</button>
+    <button @click.prevent="removeItem(item)">Delete Item</button>
   </div>
 </template>
 
@@ -35,12 +35,20 @@ export default {
   components: {
     ListSearch
   },
+  data () {
+    return {
+      time: 0
+    }
+  },
   methods: {
     onSelect(item) {
-      if (item) {
-        this.item.id = item.id
-        this.item.name = item.name
-      }
+      this.$emit('update:item', item)
+
+      // This does not work!!! Should be the same "item" object!
+      // this.$emit('update:item', {
+      //   id: item.id,
+      //   name: item.name
+      // })
     },
   }
 }
